@@ -1,0 +1,53 @@
+<!-- player.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Player</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      overflow: hidden;
+    }
+    .back-button {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.8);
+      color: #000;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <a class="back-button" href="index.html">← Back</a>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const movie = params.get('movie');
+
+    if (movie) {
+      const iframe = document.createElement('iframe');
+      iframe.src = movie;
+      iframe.allowFullscreen = true;
+      document.body.appendChild(iframe);
+    } else {
+      document.body.innerHTML = "<h2 style='color: white; text-align: center; margin-top: 20vh;'>Movie link not found.</h2>";
+    }
+  </script>
+</body>
+</html>

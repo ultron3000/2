@@ -1,128 +1,204 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="mr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>स्वराज्य</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: orange;
-      margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f97316; /* orange-500 */
     }
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 20px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      font-size: 3.5em;
-      color: #444;
-      margin: 0;
-      text-align: center;
-      flex: 1;
-    }
-    .logos img {
-      width: 40px;
-      height: auto;
-      margin: 0 10px;
-    }
-    .logos {
-      display: flex;
-      align-items: center;
-    }
-    h2 {
-      font-size: 2.5em;
-      color: #333;
-      margin-top: 30px;
-      text-align: center;
-      font-weight: bold;
-    }
-    .category-links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-      padding: 10px;
-    }
-    .movie-card {
-      background-color: #fff;
-      max-width: 220px;
-      text-align: center;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-    .movie-card:hover {
-      transform: scale(1.05);
-    }
-    .movie-card img {
+    
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
       width: 100%;
-      border-radius: 10px;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      overflow: hidden;
     }
-    .movie-card a {
-      display: block;
-      text-decoration: none;
-      color: #333;
-      font-size: 1.2em;
-      font-weight: bold;
-      margin-top: 10px;
+    
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 900px;
     }
-    .top-logo {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
+    
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 101;
     }
-    .top-logo img {
-      width: 120px;
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 95%;
+      }
+      
+      .close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="top-logo">
-    <img src="https://media.tenor.com/19hYW4oXAz4AAAAe/kaaleeya-shivmudra.png" alt="Logo">
+<body class="min-h-screen">
+  <!-- Top Logo -->
+  <div class="flex justify-center mt-5">
+    <img src="https://media.tenor.com/19hYW4oXAz4AAAAe/kaaleeya-shivmudra.png" alt="Logo" class="w-28 h-auto">
   </div>
-  <div class="header-container">
-    <a class="logos" href="https://www.youtube.com/@chhatrapati1674" target="_blank">
-      <img src="https://play-lh.googleusercontent.com/6am0i3walYwNLc08QOOhRJttQENNGkhlKajXSERf3JnPVRQczIyxw2w3DxeMRTOSdsY" alt="YouTube">
+  
+  <!-- Header Container -->
+  <div class="flex items-center justify-between bg-white rounded-xl shadow-lg mx-4 md:mx-10 my-5 p-4 md:p-6">
+    <a href="https://www.youtube.com/@chhatrapati1674" target="_blank" class="flex items-center">
+      <img src="https://play-lh.googleusercontent.com/6am0i3walYwNLc08QOOhRJttQENNGkhlKajXSERf3JnPVRQczIyxw2w3DxeMRTOSdsY" 
+           alt="YouTube" class="w-10 h-10 md:w-12 md:h-12">
     </a>
-    <h1>स्वराज्य</h1>
-    <a class="logos" href="https://sites.google.com/view/swarajya?usp=sharing" target="_blank">
-      <img src="https://w7.pngwing.com/pngs/357/433/png-transparent-computer-icons-website-web-design-logo-grey-thumbnail.png" alt="Website">
+    
+    <h1 class="text-3xl md:text-5xl font-bold text-gray-700 text-center flex-1 mx-4">स्वराज्य</h1>
+    
+    <a href="https://sites.google.com/view/swarajya?usp=sharing" target="_blank" class="flex items-center">
+      <img src="https://w7.pngwing.com/pngs/357/433/png-transparent-computer-icons-website-web-design-logo-grey-thumbnail.png" 
+           alt="Website" class="w-10 h-10 md:w-12 md:h-12">
     </a>
   </div>
 
-  <h2>मालिका (Shows)</h2>
-<div class="category-links">
-  <div class="movie-card">
-    <a href="https://www.youtube.com/watch?v=xPV20XdWjrQ&amp;list=PLMHrU-jxz0lES9o1kYK9H7f66uUcsx89m&amp;index=4" target="_blank">
-      <img src="https://s.itl.cat/pngfile/s/207-2071007_swarajya-rakshak-sambhaji-tv-show-swarajya-rakshak-sambhaji.jpg"/>
-      स्वराज्यरक्षक संभाजी
-    </a>
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-6">
+    <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-8 text-center">मालिका (Shows)</h2>
+    
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+      <!-- Show 1 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+        <div class="cursor-pointer" onclick="openModal('xPV20XdWjrQ')">
+          <img src="https://s.itl.cat/pngfile/s/207-2071007_swarajya-rakshak-sambhaji-tv-show-swarajya-rakshak-sambhaji.jpg" 
+               alt="स्वराज्यरक्षक संभाजी" class="w-full h-40 md:h-48 object-cover">
+          <div class="p-3">
+            <p class="text-sm md:text-base font-semibold text-gray-800 text-center">स्वराज्यरक्षक संभाजी</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Show 2 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+        <div class="cursor-pointer" onclick="openModal('eMBgubZWYh0')">
+          <img src="https://m.media-amazon.com/images/M/MV5BM2Q4OGRkZmQtOGNhNy00MzlkLThjMTYtMzVhZTYxNTU4ZGY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" 
+               alt="राजा शिवछत्रपती" class="w-full h-40 md:h-48 object-cover">
+          <div class="p-3">
+            <p class="text-sm md:text-base font-semibold text-gray-800 text-center">राजा शिवछत्रपती</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Show 3 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+        <div class="cursor-pointer" onclick="openModal('zLB--Mpu-Po')">
+          <img src="https://img.airtel.tv/unsafe/fit-in/1600x0/filters:format(webp)/https://xstreamcp-assets-msp.streamready.in/assets/SONYLIV_VOD/SERIES/6485cef982488153bfe4ba89/images/Tararani_12NOV_Landscape_Thumb.jpg?o=production" 
+               alt="स्वराज्य सौदामिनी ताराराणी" class="w-full h-40 md:h-48 object-cover">
+          <div class="p-3">
+            <p class="text-sm md:text-base font-semibold text-gray-800 text-center">स्वराज्य सौदामिनी ताराराणी</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Show 4 -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+        <div class="cursor-pointer" onclick="openModal('Su-ZniKjUqA')">
+          <img src="https://pbs.twimg.com/profile_images/1309840125161922560/dK_cu5Xt_400x400.jpg" 
+               alt="स्वराज्यजननी जिजामाता" class="w-full h-40 md:h-48 object-cover">
+          <div class="p-3">
+            <p class="text-sm md:text-base font-semibold text-gray-800 text-center">स्वराज्यजननी जिजामाता</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="movie-card">
-    <a href="https://www.youtube.com/watch?v=eMBgubZWYh0&amp;list=PLPT_LBXZkCXDQGqj54Bp6xkA-tqTtWggS&amp;index=2" target="_blank">
-      <img src="https://m.media-amazon.com/images/M/MV5BM2Q4OGRkZmQtOGNhNy00MzlkLThjMTYtMzVhZTYxNTU4ZGY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
-      राजा शिवछत्रपती
-    </a>
+
+  <!-- Video Modal -->
+  <div id="videoModal" class="modal">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      <div class="video-container">
+        <iframe id="youtubeVideo" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
-  <div class="movie-card">
-    <a href="https://www.youtube.com/watch?v=zLB--Mpu-Po&amp;list=PLoYBnLBgd5ablDA2w5jTd9Da0N4_OryBq&amp;index=213" target="_blank">
-      <img src="https://img.airtel.tv/unsafe/fit-in/1600x0/filters:format(webp)/https://xstreamcp-assets-msp.streamready.in/assets/SONYLIV_VOD/SERIES/6485cef982488153bfe4ba89/images/Tararani_12NOV_Landscape_Thumb.jpg?o=production"/>
-      स्वराज्य सौदामिनी ताराराणी
-    </a>
-  </div>
-  <div class="movie-card">
-    <a href="https://www.youtube.com/watch?v=Su-ZniKjUqA&amp;list=PLoYBnLBgd5ab21JrIpsunf4aBY-i2YnUv&amp;index=569" target="_blank">
-      <img src="https://pbs.twimg.com/profile_images/1309840125161922560/dK_cu5Xt_400x400.jpg"/>
-      स्वराज्यजननी जिजामाता
-    </a>
-  </div>
-</div>
+
+  <script>
+    // Modal functions
+    function openModal(videoId) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('youtubeVideo');
+      
+      // Set the video source
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      
+      // Show the modal
+      modal.style.display = "block";
+      
+      // Prevent body scrolling when modal is open
+      document.body.style.overflow = "hidden";
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('youtubeVideo');
+      
+      // Hide the modal
+      modal.style.display = "none";
+      
+      // Reset the video source to stop playback
+      iframe.src = "";
+      
+      // Re-enable body scrolling
+      document.body.style.overflow = "auto";
+    }
+    
+    // Close modal when clicking outside the video
+    window.onclick = function(event) {
+      const modal = document.getElementById('videoModal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
